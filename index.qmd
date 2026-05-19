@@ -1,0 +1,214 @@
+---
+format:
+  revealjs:
+    theme: styles.scss
+    transition: fade
+    slide-number: true
+    wide: true
+    chalkboard: true
+    margin: 0.1
+    footer: "Georgetown University | Wu Zeng"
+    controls: true
+---
+
+::: {.title-slide}
+
+#  Cost-effectiveness of AI-assisted breast cancer screening: Preliminary findings from a modelling study in the United States
+
+<br>
+**Wu Zeng, MD, PHD**
+<br>
+
+Georgetown University
+
+:::
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+library(tidyverse)
+library(kableExtra)
+library(readxl)
+```
+
+## Introduction
+
+:::: columns
+::: {.column width="50%"}
+
+- Breast cancer is the most common cancer amogn women worldwide and a leading cause of cancer-related deaths.
+- Early detection through screening can significantly reduce mortality. 
+- Traditional screening methods like mammography have limitations in sensitivity and specificity.
+- AI has been widely used in breast cancer screening, but its cost-effectiveness is not well understood.
+:::
+::: {.column width="50%"}
+
+![](/pic/AI-BC-v2.png){width=100%}
+
+:::
+::::
+
+---
+
+## Objectives 
+
+To evaluate the cost-effectiveness of AI-assisted breast cancer screening compared to traditional mammography screening from a healthcare system perspective.
+
+---
+
+## Methods
+
+[Two screening strategies]{.red} were compared:
+
+- Traditional mammography screening every 2 years (Status quo).
+- AI-assisted mammography screening every 2 years (Intervention).
+
+Target population
+
+- 1 million women aged at 40 years old undergoing routine breast cancer screening.
+
+Perspective
+
+- Healthcare system perspective 
+
+---
+
+## Time horizon and discounting
+
+- Lifetime horizon to capture all relevant costs and health outcomes.
+- Costs and health outcomes were discounted at an annual rate of 3% to reflect the time value of money and health benefits.
+
+---
+
+## Framework and model structure
+
+![](/pic/Structure.png){width=100%}
+
+---
+
+## Key modelling parameters and assumptions and data sources 
+
+- Intervention: AI-assisted mammography screening every 2 years.
+- Comparator: Traditional mammography screening every 2 years.
+- Key parameters: 
+  - Sensitivity improvement with AI: 5.7%, increased from 87.4% to 93.1% based on a recent study   
+  - Specificity improvement with AI: 0.3%, increased from 92.2% to 92.5%
+  - Additional costs of screening with AI: $40 per screening 
+  - Health utilities
+  - Cost of deaths
+- Data sources: Published literature, national databases (SEER), and assumptions.
+
+---
+
+## Key parameters 
+
+```{r echo= F}
+read_excel("../Code/Results data.xlsx", sheet = "Sheet3", range = "A1:C14", col_names = TRUE) %>%
+  kable(digits = 2) %>%
+  kable_classic(full_width = F, font_size = 17) %>%
+  footnote(general = "EBCCG denotes Early Breast Cancer Collaborative Group; SEER denotes Surveillance, Epidemiology, and End Results Program.")
+```
+
+---
+
+## Key parameters (Continue...)
+
+```{r echo= F}
+read_excel("../Code/Results data.xlsx", sheet = "Sheet3", range = "A15:C27", col_names = TRUE) %>%
+  kable(digits = 2) %>%
+  kable_classic(full_width = F)
+```
+---
+
+## Sensitivity analyses
+
+- One-way sensitivity analyses 
+  - Sensitivity 
+  - Specificity
+  - Costs of screening
+  - Treatment costs, ect. 
+
+- Probabilistic sensitivity analyses (PSA) using Monte Carlo simulations to account for uncertainty in all the major parameters simultaneously and estimate 95% confidence intervals for the cost-effectiveness results.
+
+---
+
+## Results (40 years to 100 years for 1 million population)
+
+### Cost per woman under the two scenarios 
+
+```{r echo=FALSE}
+read_excel("../Code/Results data.xlsx", sheet = "Sheet2", range = "A1:E5", col_names = TRUE) %>%
+  mutate(Share = paste0(round(Share*100,2), "%")) %>%
+kable(digits = 2, caption = "Cost per person under the two scenarios") %>%
+kable_classic(full_width = F)
+```
+
+The incremental cost difference is \$779.5 95% confidence intervals for the cost difference is between \$537.8 and \$1,116.8
+
+---
+
+## Effectiveness
+
+### QALYs per women under the two scenarios
+
+```{r echo=FALSE}
+
+read_excel("../Code/Results data.xlsx", sheet = "Sheet2", range = "A7:E8", col_names = TRUE) %>%
+  kable(digits = 4) %>%
+  kable_classic(full_width = F)
+```
+
+
+---
+
+## Cost-effectiveness results (ICER)
+
+$$ICER = \frac{779.47}{0.01244} = 62,663$$
+
+The 95% confidence intervals for the ICER is between \$40,891 and \$108,458.
+
+Using a cost-effectiveness threshold of \$100,000 per QALY gained, AI-assisted breast cancer screening is considered cost-effective compared to traditional mammography screening.
+
+---
+
+## Sensitivity analyses results
+
+### One-way sensitivity analyses
+
+![](/pic/tornado.png){width=100%}
+
+---
+
+### Probabilistic sensitivity analyses (PSA)
+
+![](/pic/accurve.png){width=100%}
+
+
+---
+
+## Discussion
+
+- AI-assisted breast cancer screening is cost-effective compared to traditional screening methods without AI.
+  - The results are consistent with prior two CEA studies with a higher ICER
+  - Howver, it was reported that AI-assisted screening was not a cost-effective strategy, where the cost of death was assumed to be \$0. 
+- The results are robust across various sensitivity analyses.
+  - The results are most sensitive to the sensitivity improvement with AI, costs of screening, and incidence of breast cancer.
+- Limitations include assumptions in the model and generalizability to different populations.
+
+---
+
+## Questions and Comments
+
+<br> <br> <br> <br> <br> 
+
+
+<center>
+
+**Contact information: wz192@georgetown.edu**
+
+</center>
+
+
+
+
