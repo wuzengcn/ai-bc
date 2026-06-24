@@ -16,7 +16,7 @@ format:
 #  Cost-effectiveness of AI-assisted breast cancer screening: Preliminary findings from a modelling study in the United States
 
 <br>
-**Wu Zeng, MD, PHD**
+**Wu Zeng (**曾武**), MD, PHD**
 <br>
 
 Georgetown University
